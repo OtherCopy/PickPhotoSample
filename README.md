@@ -1,13 +1,15 @@
 # PickPhotoView
 
+FORK FROM [https://github.com/Werb/PickPhotoSample/](https://github.com/Werb/PickPhotoSample/)
+
 A Library help u to pick photos.
 
 Click to download lastest demo ⬇️ or select [Release Version](https://github.com/Werb/PickPhotoSample/releases)
 
 [![download](/app/src/main/res/mipmap-xhdpi/ic_launcher.png)](https://fir.im/hm38)
 
-## Last Update (2018.2.23)
-#### [v0.4.6](https://github.com/Werb/PickPhotoSample/releases/tag/v0.4.6)
+## Last Update (2018.11.27)
+#### [v0.5.0](https://gitee.com/OtherCopy/PickPhotoSample/releases/0.5.0)
 1. update glide version
 
 ## Screenshot

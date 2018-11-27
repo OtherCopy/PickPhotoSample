@@ -177,8 +177,8 @@ class GridFragment : Fragment() {
     }
 
     /** image load pause when recyclerView scroll quickly */
-    private var scrollListener: RecyclerView.OnScrollListener = object : RecyclerView.OnScrollListener() {
-        override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+    private var scrollListener: RecyclerView.OnScrollListener = object : RecyclerView.OnScrollListener(){
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
             if (Math.abs(dy) > PickConfig.SCROLL_THRESHOLD) {
                 manager.pauseRequests()
@@ -187,7 +187,8 @@ class GridFragment : Fragment() {
             }
         }
 
-        override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+            super.onScrollStateChanged(recyclerView, newState)
             if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                 manager.resumeRequests()
             }
