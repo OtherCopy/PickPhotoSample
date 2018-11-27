@@ -9,7 +9,9 @@ Click to download lastest demo ⬇️ or select [Release Version](https://github
 [![download](/app/src/main/res/mipmap-xhdpi/ic_launcher.png)](https://fir.im/hm38)
 
 ## Last Update (2018.11.27)
-#### [v0.5.0](https://gitee.com/OtherCopy/PickPhotoSample/releases/0.5.0)
+
+[![](https://jitpack.io/v/OtherCopy/PickPhotoSample.svg)](https://jitpack.io/#OtherCopy/PickPhotoSample)
+
 1. update glide version
 
 ## Screenshot
