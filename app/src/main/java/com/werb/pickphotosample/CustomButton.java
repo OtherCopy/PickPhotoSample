@@ -16,7 +16,7 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 
-public class CustomButton extends android.support.v7.widget.AppCompatTextView {
+public class CustomButton extends androidx.appcompat.widget.AppCompatTextView {
     private GradientDrawable gradientDrawable;
     private int mUnPressColor;
     private int mPressColor;

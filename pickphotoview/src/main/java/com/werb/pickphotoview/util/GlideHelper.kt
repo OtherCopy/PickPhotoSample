@@ -1,7 +1,6 @@
 package com.werb.pickphotoview.util
 
 import com.bumptech.glide.Priority
-import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.werb.pickphotoview.R
@@ -20,10 +19,6 @@ object GlideHelper {
                 .priority(Priority.LOW)
                 .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
                 .skipMemoryCache(true)
-    }
-
-    fun <T> imageLoadOption(requestBuilder:RequestBuilder<T>){
-
     }
 
 }

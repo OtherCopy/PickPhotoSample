@@ -2,9 +2,10 @@ package com.werb.pickphotoview.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.annotation.Keep
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -36,16 +37,12 @@ import java.io.Serializable
 
 /** Created by wanbo <werbhelius@gmail.com> on 2017/10/18. */
 
+@Keep
 class GridFragment : Fragment() {
 
     private lateinit var adapter: MoreAdapter
     private val manager: RequestManager by lazy { Glide.with(this) }
     private val selectImages = PickPhotoHelper.selectImages
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        println("GridFragment create " + this)
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.pick_fragment_grid, container, false)
@@ -54,6 +51,7 @@ class GridFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         EventBus.register(this)
         initView()
+        getData()
     }
 
     override fun onDestroyView() {
@@ -61,10 +59,16 @@ class GridFragment : Fragment() {
         EventBus.unRegister(this)
     }
 
-    private fun initView() {
+    private fun getData() {
         GlobalData.model?.let {
+            PickPhotoHelper.start(it.isShowGif, context?.applicationContext?.contentResolver ?: return)
+        }
+    }
+
+    private fun initView() {
+        GlobalData.model?.also {
             recyclerView.addItemDecoration(SpaceItemDecoration(PickUtils.getInstance(context?.applicationContext).dp2px(PickConfig.ITEM_SPACE.toFloat()), it.spanCount))
-            recyclerView.layoutManager = GridLayoutManager(context, it.spanCount)
+            recyclerView.layoutManager = androidx.recyclerview.widget.GridLayoutManager(context, it.spanCount)
             recyclerView.addOnScrollListener(scrollListener)
             adapter = MoreAdapter()
             adapter.apply {
@@ -177,8 +181,8 @@ class GridFragment : Fragment() {
     }
 
     /** image load pause when recyclerView scroll quickly */
-    private var scrollListener: RecyclerView.OnScrollListener = object : RecyclerView.OnScrollListener(){
-        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+    private var scrollListener: androidx.recyclerview.widget.RecyclerView.OnScrollListener = object : androidx.recyclerview.widget.RecyclerView.OnScrollListener() {
+        override fun onScrolled(recyclerView: androidx.recyclerview.widget.RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
             if (Math.abs(dy) > PickConfig.SCROLL_THRESHOLD) {
                 manager.pauseRequests()
@@ -187,9 +191,8 @@ class GridFragment : Fragment() {
             }
         }
 
-        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-            super.onScrollStateChanged(recyclerView, newState)
-            if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+        override fun onScrollStateChanged(recyclerView: androidx.recyclerview.widget.RecyclerView, newState: Int) {
+            if (newState == androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_IDLE) {
                 manager.resumeRequests()
             }
         }

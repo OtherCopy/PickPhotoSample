@@ -6,7 +6,8 @@ import android.content.Intent
 import android.graphics.PorterDuff
 import android.net.Uri
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.annotation.Keep
+import androidx.fragment.app.Fragment
 import com.werb.eventbus.EventBus
 import com.werb.eventbus.Subscriber
 import com.werb.pickphotoview.event.PickFinishEvent
@@ -28,6 +29,7 @@ import java.io.Serializable
  * Created by wanbo on 2016/12/30.
  */
 
+@Keep
 class PickPhotoActivity :  BasePickActivity() {
 
     private var mode = PickConfig.PICK_GIRD
@@ -37,17 +39,9 @@ class PickPhotoActivity :  BasePickActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        EventBus.register(this)
         setContentView(R.layout.pick_activity_pick_photo)
         initToolbar()
-
-        EventBus.register(this)
-        getData()
-    }
-
-    private fun getData() {
-        GlobalData.model?.let {
-            PickPhotoHelper.start(it.isShowGif, applicationContext.contentResolver)
-        }
     }
 
     private fun initToolbar() {

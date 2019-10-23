@@ -29,7 +29,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="100dp">
 
-        <android.support.v7.widget.AppCompatImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/selectBack"
             android:layout_width="20dp"
             android:layout_height="20dp"
@@ -37,7 +37,7 @@
             android:layout_margin="5dp"
             android:scaleType="centerCrop" />
 
-        <android.support.v7.widget.AppCompatImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/check"
             android:layout_width="15dp"
             android:layout_height="15dp"
