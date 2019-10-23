@@ -12,8 +12,6 @@ android {
 
         versionName PROJ_VERSION
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
     }
     buildTypes {
         release {
@@ -42,18 +40,18 @@ repositories {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
     compileOnly 'androidx.appcompat:appcompat:1.1.0'
-    testImplementation 'junit:junit:4.12'
     compileOnly 'androidx.recyclerview:recyclerview:1.0.0'
     compileOnly 'com.google.code.gson:gson:2.8.5'
     compileOnly 'com.github.bumptech.glide:glide:4.10.0'
     compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     compileOnly 'com.google.android.material:material:1.0.0'
-    implementation('com.werb.moretype:moretype:0.3.4', {
+    implementation('com.werb.moretype:moretype:0.3.6', {
         exclude group: 'com.android.support'
+        exclude group: 'androidx.core'
+        exclude group: 'androidx.legacy'
+        exclude group: 'androidx.annotation'
+        exclude group: 'androidx.lifecycle'
         exclude group: "org.jetbrains.kotlin"
     })
     implementation('com.werb.eventbuskotlin:eventbuskotlin:0.2.0') {
